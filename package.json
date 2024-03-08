@@ -1,0 +1,29 @@
+{
+  "name": "e-0923-oop-github-actions-page-complete",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "compile:sass": "sass src/css/main.scss dist/css/style.css",
+    "minify:css": "postcss dist/css/style.css -o dist/css/style.min.css",
+    "compile:ts": "tsc",
+    "minify:js": "terser src/js/script.js -o dist/js/script.min.js",
+    "complete:css": "npm run compile:sass && npm run minify:css",
+    "complete:js": "npm run compile:ts && npm run minify:js",
+    "complete": "npm run complete:css && npm run complete:js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "cssnano": "^6.0.3",
+    "postcss-cli": "^11.0.0",
+    "sass": "^1.71.0",
+    "terser": "^5.27.1",
+    "typescript": "^5.3.3"
+  },
+  "dependencies": {
+    "@types/gsap": "^3.0.0",
+    "gsap": "^3.12.5"
+  }
+}
