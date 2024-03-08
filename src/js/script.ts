@@ -12,7 +12,6 @@ document.addEventListener("DOMContentLoaded", () => {
   animationGsap();
 });
 
-
 function initCursorAnimation(): void {
   document.addEventListener("mousemove", (e) => {
     const mouseX = e.clientX;
