@@ -1,0 +1,47 @@
+name: Build and Deploy
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: "18"
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Compile SASS to CSS
+        run: npm run compile:sass
+
+      - name: Minify CSS
+        run: npm run minify:css
+
+      - name: Compile TypeScript
+        run: npm run compile:ts
+
+      - name: Minify JavaScript
+        run: npm run minify:js
+
+      - name: Commit minified files
+        run: |
+          git config --global user.name 'GitHub Actions'
+          git config --global user.email 'actions@github.com'
+          git add dist/css/style.min.css dist/js/script.min.js
+          git commit -m "Minify CSS and JS" || echo "No changes to commit"
+          git push
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./dist
