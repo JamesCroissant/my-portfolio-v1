@@ -163,6 +163,21 @@ function animationGsap() {
     autoAlpha: 0
   })
 
+  // work4
+  let tl4 = gsap.timeline({
+    scrollTrigger: {
+      trigger: ".work4",
+      start: "top 80%",
+      end: "top 40%",
+      scrub: false,
+      markers: false,
+    }
+  })
+  tl4.from(".work4", {
+    x: "30%",
+    autoAlpha: 0
+  })
+
   let contactMessage = gsap.timeline({
     scrollTrigger: {
       trigger: ".contact-form > div > p",
